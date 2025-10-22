@@ -1,0 +1,28 @@
+@workspace You are my Spring Boot project assistant.
+Scan the entire project — including all controller, service, repository, entity, and database migration files (Flyway or Liquibase).
+
+Your goal:
+For every REST endpoint in the project, find how it fetches data from the database.
+Trace the call chain:
+Controller → Service → Repository/DAO → Entity → Table.
+
+From that, generate the **exact SQL SELECT statements** that represent what Hibernate or JPA executes for each endpoint.
+
+Rules:
+- Include **only SELECT statements** (no INSERT, UPDATE, DELETE, or DDL).
+- Each query should use the **real table and column names** as defined in entity annotations or migrations.
+- Use the project’s actual database dialect (infer from application.yml or properties).
+- One fenced ```sql``` code block per endpoint.
+- Prefix each block with a comment showing the endpoint path and HTTP method.
+- Absolutely no explanation, text, or commentary — just SQL.
+
+Example output format:
+```sql
+-- GET /api/customers
+SELECT id, name, email FROM customers;
+
+-- GET /api/orders/{id}
+SELECT o.id, o.order_number, c.name AS customer_name
+FROM orders o
+JOIN customers c ON c.id = o.customer_id
+WHERE o.id = ?;
