@@ -1,20 +1,21 @@
-@workspace You are my Spring Boot project assistant.
-Scan the entire project — including all controller, service, repository, entity, and database migration files (Flyway or Liquibase).
+@workspace You are my Spring Boot project analyzer.
 
-Your goal:
-For every REST endpoint in the project, find how it fetches data from the database.
-Trace the call chain:
-Controller → Service → Repository/DAO → Entity → Table.
+Read all source files only through your internal workspace index.
+Do NOT request or execute any shell or terminal commands, and do not ask to run anything in the console.
 
-From that, generate the **exact SQL SELECT statements** that represent what Hibernate or JPA executes for each endpoint.
+Task:
+- Scan all controllers, services, repositories, and entity classes in this project.
+- For every REST endpoint (any method annotated with @RequestMapping, @GetMapping, etc.):
+  1. Trace the complete call chain (Controller → Service → Repository/DAO → Entity).
+  2. Identify which database tables and columns are queried.
+  3. Generate the exact SQL SELECT statement that fetches the same data as the code.
+  4. Use actual table and column names from entity annotations or Flyway/Liquibase migrations.
 
 Rules:
-- Include **only SELECT statements** (no INSERT, UPDATE, DELETE, or DDL).
-- Each query should use the **real table and column names** as defined in entity annotations or migrations.
-- Use the project’s actual database dialect (infer from application.yml or properties).
-- One fenced ```sql``` code block per endpoint.
-- Prefix each block with a comment showing the endpoint path and HTTP method.
-- Absolutely no explanation, text, or commentary — just SQL.
+- Output **only SELECT SQL queries** — ignore any INSERT, UPDATE, DELETE, or DDL operations.
+- For each endpoint, show the HTTP method and path as a comment, then the SQL in a fenced ```sql``` block.
+- Do not include any explanations, file paths, or commentary.
+- Work entirely from workspace context; never ask to run or read files through commands.
 
 Example output format:
 ```sql
