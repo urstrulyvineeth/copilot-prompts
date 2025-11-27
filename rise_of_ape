@@ -1,0 +1,152 @@
+I want you to generate a complete, production-quality React + Canvas mini-game called “Rise of Ape”. 
+The game must be fully buildable, visually polished, and playable inside a browser.
+
+=========================
+= GAME OVERVIEW
+=========================
+Rise of Ape is a fast-paced, floor-climbing survival game. 
+An ape must climb from Floor 1 to Floor 10. 
+Each floor has a different hazard. 
+The ape can move LEFT, RIGHT, UP (climb ladder), or DOWN (drop back).
+Colliding with any hazard = instant elimination.
+Reaching Floor 10 = victory.
+
+=========================
+= CORE GAME RULES
+=========================
+
+PLAYER:
+• Controlled with Arrow Keys (left, right, up, down).
+• Moves tile-by-tile (grid based).
+• If player touches a hazard → show red flash → GAME OVER.
+• If player reaches ladder tile → climb to next floor.
+
+FLOORS:
+There are 10 floors stacked vertically.
+Each floor has a unique hazard pattern:
+
+1. Rolling Barrels – barrels roll across the floor.
+2. Crumbling Tiles – tiles break after stepping twice.
+3. Zapper Floor – sparks move across at intervals.
+4. Sneaky Snake – snake lunges horizontally.
+5. Conveyor Belt – floor pushes player left/right.
+6. Flame Burst – periodic fire bursts from sides.
+7. Shadow Floor – only area around player is illuminated.
+8. Wind Floor – wind pushes player randomly.
+9. Mirror Floor – controls reverse for 3 seconds.
+10. Boss Floor – gorilla throws coconuts.
+
+Only one ladder on each floor allows climbing up.
+
+WIN CONDITION:
+• Player reaches Floor 10 ladder → play short celebration animation → show WIN screen.
+
+LOSE CONDITION:
+• Hazard collision OR falling off floor OR time runs out (optional) → LOSE screen.
+
+=========================
+= GAME LOOP REQUIREMENTS
+=========================
+
+Use a Canvas-based render loop:
+• requestAnimationFrame for 60 FPS.
+• Delta time based movement.
+• Canvas draws floors, hazards, ape character, effects.
+React handles:
+• UI (floor indicator, lives, restart button)
+• Start screen
+• End screens
+• Score / progress
+
+=========================
+= TECH REQUIREMENTS
+=========================
+• Use React + Vite + JavaScript.
+• Keep dependencies minimal — ONLY React & Vite.
+• One Canvas element for rendering the gameplay.
+• No external game engines.
+
+PROJECT STRUCTURE:
+• src/App.jsx
+• src/GameCanvas.jsx
+• src/engine/gameEngine.js
+• src/engine/hazards.js
+• src/engine/player.js
+• src/engine/floors.js
+• src/utils/helpers.js
+• src/styles.css
+• index.html
+• vite.config.js
+• package.json
+• README.md
+
+=========================
+= IMPLEMENTATION DETAILS
+=========================
+
+APE MOVEMENT:
+• Tile/grid based.
+• Smooth pixel movement, not jumpy.
+• Use boundaries per floor.
+
+HAZARDS:
+Each hazard type should be implemented as a class or function object:
+• update(dt)
+• draw(ctx)
+• checkCollision(player)
+Hazards should be parameterized so floors feel different each run.
+
+FLOOR MANAGER:
+• Loads hazards for each floor.
+• Provides ladder position.
+• Handles floor transitions.
+
+CANVAS RENDERING:
+• Draw floors as horizontal lanes.
+• Draw ape as a simple shape or sprite (minimal).
+• Add subtle neon glow effects.
+• Add hit flash (red overlay on collision).
+
+UI:
+• Floor number display.
+• Restart button.
+• Win screen.
+• Lose screen.
+• Title screen: “Rise of Ape”.
+
+ACCESSIBILITY:
+• Add ARIA labels.
+• Show on-screen control hints for mobile.
+
+=========================
+= POLISH REQUIREMENTS
+=========================
+Add simple but effective visual polish:
+• Screen shake on collision.
+• Red flash overlay on death.
+• Glow on ladders.
+• Slight parallax on background.
+• Animation on victory.
+
+Animations must be lightweight and easy.
+
+=========================
+= DELIVERABLES
+=========================
+Generate the FULL project:
+• Full working code for all files.
+• README with:
+  - Story summary
+  - Controls
+  - How-to-run steps
+  - Features list
+  - 4-hour build explanation
+• Ensure the code runs immediately with:
+  npm install
+  npm run dev
+
+IMPORTANT:
+Write the entire game code clearly and fully.
+Keep functions small, commented, and readable.
+
+Start by generating the full file structure, then fill EACH file with code.
