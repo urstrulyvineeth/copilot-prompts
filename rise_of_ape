@@ -1,152 +1,99 @@
-I want you to generate a complete, production-quality React + Canvas mini-game called “Rise of Ape”. 
-The game must be fully buildable, visually polished, and playable inside a browser.
+Create a complete, dependency-free, pure HTML + CSS + JavaScript browser game called “Rise of Ape”. 
+NO npm. NO libraries. NO frameworks. NO React. NO build steps. No imports. No modules. Just one folder with .html, .css, and .js files.
 
 =========================
 = GAME OVERVIEW
 =========================
-Rise of Ape is a fast-paced, floor-climbing survival game. 
-An ape must climb from Floor 1 to Floor 10. 
-Each floor has a different hazard. 
-The ape can move LEFT, RIGHT, UP (climb ladder), or DOWN (drop back).
-Colliding with any hazard = instant elimination.
+Rise of Ape is a 10-floor climbing survival game. 
+The ape must climb from Floor 1 to Floor 10 using left, right, up, down movement. 
+Each floor contains a unique hazard pattern. 
+Touching a hazard = instant game over. 
 Reaching Floor 10 = victory.
 
 =========================
-= CORE GAME RULES
+= FILE STRUCTURE
 =========================
+index.html
+style.css
+game.js
+assets/ (optional placeholder images or shapes)
 
+=========================
+= GAME REQUIREMENTS
+=========================
+• Pure JavaScript for everything – no imports.
+• Use <canvas> for rendering.
+• Use requestAnimationFrame for 60 FPS.
+• Responsive design (scales to screen).
+• Keyboard controls: arrow keys.
+• Start Screen, Game Screen, Win Screen, Lose Screen.
+• Show current floor number + “Rise of Ape” title.
+
+=========================
+= GAME LOGIC
+=========================
 PLAYER:
-• Controlled with Arrow Keys (left, right, up, down).
-• Moves tile-by-tile (grid based).
-• If player touches a hazard → show red flash → GAME OVER.
-• If player reaches ladder tile → climb to next floor.
+• Has x, y grid-based movement.
+• Collision with hazard triggers gameOver().
+• Ladder tile per floor allows climbing upward.
+• Can drop down to previous floor.
 
 FLOORS:
-There are 10 floors stacked vertically.
-Each floor has a unique hazard pattern:
+10 stacked floors, each with unique hazards:
+1. Rolling Barrels
+2. Crumbling Tiles
+3. Electric Zappers
+4. Lunging Snake
+5. Conveyor Belt
+6. Flame Bursts
+7. Shadow Floor (lighting around player)
+8. Wind Push Floor
+9. Mirror Controls Floor
+10. Boss Gorilla throwing objects
 
-1. Rolling Barrels – barrels roll across the floor.
-2. Crumbling Tiles – tiles break after stepping twice.
-3. Zapper Floor – sparks move across at intervals.
-4. Sneaky Snake – snake lunges horizontally.
-5. Conveyor Belt – floor pushes player left/right.
-6. Flame Burst – periodic fire bursts from sides.
-7. Shadow Floor – only area around player is illuminated.
-8. Wind Floor – wind pushes player randomly.
-9. Mirror Floor – controls reverse for 3 seconds.
-10. Boss Floor – gorilla throws coconuts.
-
-Only one ladder on each floor allows climbing up.
-
-WIN CONDITION:
-• Player reaches Floor 10 ladder → play short celebration animation → show WIN screen.
-
-LOSE CONDITION:
-• Hazard collision OR falling off floor OR time runs out (optional) → LOSE screen.
-
-=========================
-= GAME LOOP REQUIREMENTS
-=========================
-
-Use a Canvas-based render loop:
-• requestAnimationFrame for 60 FPS.
-• Delta time based movement.
-• Canvas draws floors, hazards, ape character, effects.
-React handles:
-• UI (floor indicator, lives, restart button)
-• Start screen
-• End screens
-• Score / progress
-
-=========================
-= TECH REQUIREMENTS
-=========================
-• Use React + Vite + JavaScript.
-• Keep dependencies minimal — ONLY React & Vite.
-• One Canvas element for rendering the gameplay.
-• No external game engines.
-
-PROJECT STRUCTURE:
-• src/App.jsx
-• src/GameCanvas.jsx
-• src/engine/gameEngine.js
-• src/engine/hazards.js
-• src/engine/player.js
-• src/engine/floors.js
-• src/utils/helpers.js
-• src/styles.css
-• index.html
-• vite.config.js
-• package.json
-• README.md
-
-=========================
-= IMPLEMENTATION DETAILS
-=========================
-
-APE MOVEMENT:
-• Tile/grid based.
-• Smooth pixel movement, not jumpy.
-• Use boundaries per floor.
-
-HAZARDS:
-Each hazard type should be implemented as a class or function object:
+HAZARD SYSTEM:
+Each hazard is implemented as a simple JS object with:
 • update(dt)
 • draw(ctx)
 • checkCollision(player)
-Hazards should be parameterized so floors feel different each run.
 
-FLOOR MANAGER:
-• Loads hazards for each floor.
-• Provides ladder position.
-• Handles floor transitions.
-
-CANVAS RENDERING:
-• Draw floors as horizontal lanes.
-• Draw ape as a simple shape or sprite (minimal).
-• Add subtle neon glow effects.
-• Add hit flash (red overlay on collision).
-
-UI:
-• Floor number display.
-• Restart button.
-• Win screen.
-• Lose screen.
-• Title screen: “Rise of Ape”.
-
-ACCESSIBILITY:
-• Add ARIA labels.
-• Show on-screen control hints for mobile.
+No classes needed, use plain objects and functions.
 
 =========================
-= POLISH REQUIREMENTS
+= RENDERING
 =========================
-Add simple but effective visual polish:
-• Screen shake on collision.
+Canvas must show:
+• Floors as horizontal lanes.
+• Ape as a simple square or sprite.
+• Hazards animated.
+• Glow effect for ladders.
 • Red flash overlay on death.
-• Glow on ladders.
-• Slight parallax on background.
-• Animation on victory.
+• Screen shake effect using camera offset.
 
-Animations must be lightweight and easy.
+=========================
+= UI & POLISH
+=========================
+• Title screen with “Start Game” button.
+• Floor counter on top-left.
+• Restart button on lose screen.
+• Celebration animation on win.
+• Light sound effects using HTML <audio> (optional, no external files required).
 
 =========================
 = DELIVERABLES
 =========================
-Generate the FULL project:
-• Full working code for all files.
-• README with:
-  - Story summary
-  - Controls
-  - How-to-run steps
-  - Features list
-  - 4-hour build explanation
-• Ensure the code runs immediately with:
-  npm install
-  npm run dev
+Produce the FULL code for:
+• index.html
+• style.css
+• game.js
 
-IMPORTANT:
-Write the entire game code clearly and fully.
-Keep functions small, commented, and readable.
+Everything must run by simply opening index.html in a browser. 
+No build, no install, no internet required.
 
-Start by generating the full file structure, then fill EACH file with code.
+Ensure:
+• Clean, readable code.
+• Comment key sections.
+• All hazards implemented simply but visually clear.
+• Game is fully functional.
+
+Start by outputting all three files with full code.
